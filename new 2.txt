@@ -1,0 +1,35 @@
+--CREATE DATABASE KLIO_db
+--go
+
+use KLIO_db
+go
+
+--CREATE TABLE staff_table (
+--    staff_id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+--    full_name NVARCHAR(150) NOT NULL,
+--    service NVARCHAR(100) NOT NULL,
+--    phone_number NVARCHAR(20) NOT NULL,
+--    email NVARCHAR(150) NOT NULL,
+--    birth_date DATE NOT NULL,
+--    city NVARCHAR(100) NOT NULL,
+--    post_number INT NOT NULL
+--);
+
+--INSERT INTO staff_table (full_name, service, phone_number, email, birth_date, city, post_number)
+--VALUES
+--('Иванов Иван Иванович', 'Кадры', '+79001000001', 'ivanov1@mail.ru', '1990-01-12', 'Москва', 101001),
+--('Петров Пётр Сергеевич', 'Бухгалтерия', '+79001000002', 'petrov2@mail.ru', '1988-03-25', 'Санкт-Петербург', 190000),
+--('Сидорова Анна Викторовна', 'IT-отдел', '+79001000003', 'sidorova3@mail.ru', '1995-07-14', 'Казань', 420000),
+--('Кузнецов Михаил Андреевич', 'IT-отдел', '+79001000004', 'kuznetsov4@mail.ru', '1992-11-02', 'Екатеринбург', 620000),
+--('Орлова Мария Денисовна', 'Кадры', '+79001000005', 'orlova5@mail.ru', '1998-05-19', 'Новосибирск', 630000);
+
+--CREATE TABLE admin_table (
+--    admin_id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+--    login NVARCHAR(150) NOT NULL,
+--    full_name NVARCHAR(150) NOT NULL,
+--    password NVARCHAR NOT NULL,
+--);
+
+--INSERT INTO admin_table (login, full_name, password)
+--VALUES
+--('t', 'Admin Test', '1');

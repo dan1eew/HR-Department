@@ -9,6 +9,7 @@
     <RootNamespace>HR_Department</RootNamespace>
     <AssemblyName>HR Department</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <LangVersion>12.0</LangVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -55,6 +56,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DatabaseHelper.cs" />
+    <Compile Include="StaffViewModel.cs" />
     <Compile Include="TableWindow.xaml.cs">
       <DependentUpon>TableWindow.xaml</DependentUpon>
     </Compile>
@@ -102,6 +105,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="free-icon-adding-black-square-button-interface-symbol-54365.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="free-icon-edit-button-5254025.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="free-icon-delete-button-10860263.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="free-icon-exit-320140.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="free-icon-information-807334.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="free-icon-refresh-3550487.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
