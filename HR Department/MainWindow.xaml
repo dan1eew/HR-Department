@@ -8,16 +8,16 @@
         FontFamily="Sitka Display" FontSize="18" 
         WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" 
         Background="#FFAFAFAF" Foreground="White">
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="70"/>
             <RowDefinition/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Margin="10,10,10,10">
-            <Label Content="HR Deportament" FontSize="35" HorizontalAlignment="Center" FontWeight="Bold" Height="49"/>
-            <Label Content="- система по учёту сотрудников" HorizontalAlignment="Right" Height="30"/>
+            <Label Content="HR Department" FontSize="35" HorizontalAlignment="Center" FontWeight="Bold" Height="49"/>
         </StackPanel>
 
         <Border Grid.Row ="1" Background="#FF252525"
@@ -29,26 +29,30 @@
                 </StackPanel>
                 <Label Content="Логин:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,100,0,0" 
                        Foreground="White" Height="32"/>
-                <TextBox VerticalAlignment="Top" Margin="168,103,15,0" Height="25" Background="#FFAFAFAF"/>
+                <TextBox x:Name="LoginBox" VerticalAlignment="Top" Margin="168,103,15,0" Height="25" Background="#FFAFAFAF" FontFamily="Times New Roman" VerticalContentAlignment="Center"/>
                 <Label Content="Пароль:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,150,0,0" 
                         Foreground="White" Height="32"/>
-                <PasswordBox VerticalAlignment="Top" Margin="168,153,15,0" Height="25" Background="#FFAFAFAF"/>
+                <PasswordBox x:Name="PasswordBox" VerticalAlignment="Top" Margin="168,153,15,0" Height="25" Background="#FFAFAFAF" FontFamily="Times New Roman" VerticalContentAlignment="Center"/>
                 <Label Content="Повторите пароль:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,200,0,0" 
                         Foreground="White" Height="32"/>
-                <PasswordBox VerticalAlignment="Top" Margin="168,203,15,0" Height="25" Background="#FFAFAFAF"/>
+                <PasswordBox x:Name="PasswordBox2" VerticalAlignment="Top" Margin="168,203,15,0" Height="25" Background="#FFAFAFAF" FontFamily="Times New Roman" VerticalContentAlignment="Center"/>
 
-                <Button Content="Войти" Background="#FFF5CF46" Width="150" Height="40" FontSize="22" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,15,25" BorderBrush="#FFAFAFAF"/>
+                <TextBlock x:Name="StatusMainBox" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Times New Roman"
+                           Margin="10,250,10,0" Background="#FFC80909" TextWrapping="Wrap"/>
 
+                <Button Content="Войти" Background="#FFE89025" Width="150" 
+                        Height="40" FontSize="22" Style="{StaticResource C4}"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" 
+                        BorderBrush="White" Click="LoginClick" Foreground="White" FontWeight="Bold"/>
             </Grid>
         </Border>
 
-        <StackPanel Grid.Row="2" Margin="10,0,0,0" 
-                    Orientation="Horizontal" VerticalAlignment="Center">
-            <Label Content="!" FontSize="24" 
-                   VerticalContentAlignment="Center" VerticalAlignment="Center" />
-            <Label Content="версия hrd - lite | 01.012" FontSize="16" 
-                   HorizontalContentAlignment="Center" VerticalAlignment="Center"/>
-        </StackPanel>
+        <Grid Grid.Row="2" 
+              VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
+            <Image Source="/free-icon-information-807334.png" Width="15" Height="16" HorizontalAlignment="Left"/>
+            <Label Content="версия hrd - lite | 01.012" FontSize="14" 
+                   HorizontalContentAlignment="Center" VerticalAlignment="Center" Height="24" Padding="0,3,5,0" HorizontalAlignment="Left" Margin="20,0,0,0" />
+        </Grid>
 
     </Grid>
 </Window>
