@@ -56,8 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DatabaseHelper.cs" />
-    <Compile Include="StaffViewModel.cs" />
+    <Compile Include="Database\DatabaseHelper.cs" />
+    <Compile Include="StaffEditWindow.xaml.cs">
+      <DependentUpon>StaffEditWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StaffViewModel.cs" />
     <Compile Include="TableWindow.xaml.cs">
       <DependentUpon>TableWindow.xaml</DependentUpon>
     </Compile>
@@ -73,6 +76,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="StaffEditWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TableWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,22 +114,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="free-icon-adding-black-square-button-interface-symbol-54365.png" />
+    <Folder Include="Images\" />
+    <Folder Include="Window\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="free-icon-edit-button-5254025.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="free-icon-delete-button-10860263.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="free-icon-exit-320140.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="free-icon-information-807334.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="free-icon-refresh-3550487.png" />
+    <Resource Include="IconInfo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

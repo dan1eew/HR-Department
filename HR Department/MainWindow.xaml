@@ -4,11 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HR_Department"
-        mc:Ignorable="d" Height="550" Width="550" 
-        FontFamily="Sitka Display" FontSize="18" 
-        WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize" 
-        Background="#FFAFAFAF" Foreground="White">
-    
+        mc:Ignorable="d"
+        Height="550"
+        Width="550"
+        FontFamily="Sitka Display"
+        FontSize="18"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="CanMinimize"
+        Background="White"
+        Foreground="White">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
@@ -16,43 +21,130 @@
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="10,10,10,10">
-            <Label Content="HR Department" FontSize="35" HorizontalAlignment="Center" FontWeight="Bold" Height="49"/>
+        <!-- ===== HEADER ===== -->
+        <StackPanel Grid.Row="0"
+                    Margin="10">
+            <Label Content="HR Department"
+                   FontSize="35"
+                   FontWeight="Bold"
+                   Height="50"
+                   HorizontalAlignment="Center"
+                   ToolTip="Система управления персоналом"/>
         </StackPanel>
 
-        <Border Grid.Row ="1" Background="#FF252525"
-                CornerRadius="20" Margin="10,0,10,0">
+        <!-- ===== LOGIN FORM ===== -->
+        <Border Grid.Row="1"
+                Background="#FF252525"
+                CornerRadius="20"
+                Margin="10,0">
+
             <Grid>
-                <StackPanel Height="103" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top">
-                    <Label Content="Вход" 
-                       Foreground="White" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <!-- Title -->
+                <StackPanel Height="103"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top">
+                    <Label Content="Вход"
+                           Foreground="White"
+                           FontSize="30"
+                           FontWeight="Bold" VerticalAlignment="Center"/>
                 </StackPanel>
-                <Label Content="Логин:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,100,0,0" 
-                       Foreground="White" Height="32"/>
-                <TextBox x:Name="LoginBox" VerticalAlignment="Top" Margin="168,103,15,0" Height="25" Background="#FFAFAFAF" FontFamily="Times New Roman" VerticalContentAlignment="Center"/>
-                <Label Content="Пароль:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,150,0,0" 
-                        Foreground="White" Height="32"/>
-                <PasswordBox x:Name="PasswordBox" VerticalAlignment="Top" Margin="168,153,15,0" Height="25" Background="#FFAFAFAF" FontFamily="Times New Roman" VerticalContentAlignment="Center"/>
-                <Label Content="Повторите пароль:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,200,0,0" 
-                        Foreground="White" Height="32"/>
-                <PasswordBox x:Name="PasswordBox2" VerticalAlignment="Top" Margin="168,203,15,0" Height="25" Background="#FFAFAFAF" FontFamily="Times New Roman" VerticalContentAlignment="Center"/>
 
-                <TextBlock x:Name="StatusMainBox" VerticalAlignment="Top" HorizontalAlignment="Center" FontFamily="Times New Roman"
-                           Margin="10,250,10,0" Background="#FFC80909" TextWrapping="Wrap"/>
+                <!-- Login -->
+                <Label Content="Логин:"
+                       Foreground="White"
+                       Margin="10,100,0,0"
+                       VerticalAlignment="Top"
+                       ToolTip="Введите логин администратора"/>
 
-                <Button Content="Войти" Background="#FFE89025" Width="150" 
-                        Height="40" FontSize="22" Style="{StaticResource C4}"
-                        HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,20,20" 
-                        BorderBrush="White" Click="LoginClick" Foreground="White" FontWeight="Bold"/>
+                <TextBox x:Name="LoginBox"
+                         Margin="168,103,15,0"
+                         Height="25"
+                         Background="White"
+                         BorderBrush="White"
+                         FontFamily="Times New Roman"
+                         VerticalContentAlignment="Center"
+                         VerticalAlignment="Top"
+                         ToolTip="Логин для входа"/>
+
+                <!-- Password -->
+                <Label Content="Пароль:"
+                       Foreground="White"
+                       Margin="10,150,0,0"
+                       VerticalAlignment="Top"
+                       ToolTip="Введите пароль"/>
+
+                <PasswordBox x:Name="PasswordBox"
+                             Margin="168,153,15,0"
+                             Height="25"
+                             Background="White"
+                             BorderBrush="White"
+                             FontFamily="Times New Roman"
+                             VerticalContentAlignment="Center"
+                             VerticalAlignment="Top"
+                             ToolTip="Пароль"/>
+
+                <!-- Repeat password -->
+                <Label Content="Повторите пароль:"
+                       Foreground="White"
+                       Margin="10,200,0,0"
+                       VerticalAlignment="Top"
+                       ToolTip="Повтор пароля для проверки"/>
+
+                <PasswordBox x:Name="PasswordBox2"
+                             Margin="168,203,15,0"
+                             Height="25"
+                             Background="White"
+                             BorderBrush="White"
+                             FontFamily="Times New Roman"
+                             VerticalContentAlignment="Center"
+                             VerticalAlignment="Top"
+                             ToolTip="Повторите пароль"/>
+
+                <!-- Status -->
+                <TextBlock x:Name="StatusMainBox"
+                           Margin="10,250,10,0"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Center"
+                           FontFamily="Times New Roman"
+                           Background="Red"
+                           TextWrapping="Wrap"
+                           ToolTip="Сообщения об ошибках"/>
+
+                <!-- Login button -->
+                <Button Content="Войти"
+                        Width="150"
+                        Height="40"
+                        FontSize="22"
+                        Style="{StaticResource C4}"
+                        Background="White"
+                        BorderBrush="#FF0086EC"
+                        Foreground="Black"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,20,20"
+                        Click="LoginClick"
+                        ToolTip="Войти в систему"/>
             </Grid>
         </Border>
 
-        <Grid Grid.Row="2" 
-              VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0">
-            <Image Source="/free-icon-information-807334.png" Width="15" Height="16" HorizontalAlignment="Left"/>
-            <Label Content="версия hrd - lite | 01.012" FontSize="14" 
-                   HorizontalContentAlignment="Center" VerticalAlignment="Center" Height="24" Padding="0,3,5,0" HorizontalAlignment="Left" Margin="20,0,0,0" />
-        </Grid>
+        <!-- ===== FOOTER ===== -->
+        <Grid Grid.Row="2"
+              Margin="10,0,0,0"
+              VerticalAlignment="Center"
+              HorizontalAlignment="Left">
 
+            <Image Source="/IconInfo.png"
+                   Width="15"
+                   Height="16"
+                   ToolTip="Информация о версии" HorizontalAlignment="Left"/>
+
+            <Label Content="версия hrd - Lite | 01.22/10"
+                   FontSize="14"
+                   Height="24"
+                   Padding="0,3,5,0"
+                   Margin="20,0,0,0"/>
+        </Grid>
     </Grid>
 </Window>

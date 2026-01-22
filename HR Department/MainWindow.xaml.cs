@@ -1,80 +1,57 @@
-﻿using System;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Windows;
 
 namespace HR_Department
 {
+    /*
+            23.01.2026 
+            https://github.com/dan1eew/HR-Department
+    */ 
     public partial class MainWindow : Window
     {
-        public static string CurrentUserFullName { get; private set; }
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public static string CurrentAdminFullName { get; private set; }
+
+        public MainWindow() => InitializeComponent();
 
         private void LoginClick(object sender, RoutedEventArgs e)
         {
             StatusMainBox.Text = string.Empty;
 
-            if (string.IsNullOrWhiteSpace(LoginBox.Text))
-            {
+            if (string.IsNullOrWhiteSpace(LoginBox.Text)) {
                 StatusMainBox.Text = "Введите логин";
-                return;
-            }
+                return; }
 
-            if (string.IsNullOrWhiteSpace(PasswordBox.Password))
-            {
+            if (string.IsNullOrWhiteSpace(PasswordBox.Password)) {
                 StatusMainBox.Text = "Введите пароль";
-                return;
-            }
+                return; }
 
-            if (PasswordBox.Password != PasswordBox2.Password)
-            {
+            if (PasswordBox.Password != PasswordBox2.Password) {
                 StatusMainBox.Text = "Пароли не совпадают";
-                return;
-            }
+                return; }
 
-            AuthenticateUser(LoginBox.Text, PasswordBox.Password);
+            AuthenticateAdmin(LoginBox.Text, PasswordBox.Password);
         }
 
-        private void AuthenticateUser(string login, string password)
+        /// <summary>Метод аутентификации</summary>
+        private void AuthenticateAdmin(string text, string password)
         {
-            try
-            {
-                StatusMainBox.Text = string.Empty;
-                string query = "SELECT * FROM admin_table WHERE login = @login AND password = @password";
+            using var con = new SqlConnection(DatabaseHelper.connectionString);
+            using var cmd = new SqlCommand(
+                "SELECT full_name FROM admin_table WHERE login=@l AND password=@p", con);
 
-                using (SqlConnection connection = new SqlConnection(DatabaseHelper.connectionString))
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@login", login);
-                    command.Parameters.AddWithValue("@password", password);
+            cmd.Parameters.AddWithValue("@l", LoginBox.Text);
+            cmd.Parameters.AddWithValue("@p", PasswordBox.Password);
 
-                    connection.Open();
-                    SqlDataReader reader = command.ExecuteReader();
+            con.Open();
+            var name = cmd.ExecuteScalar();
 
-                    if (reader.Read())
-                    {
-                        CurrentUserFullName = reader["full_name"].ToString();
-                        reader.Close();
+            if (name == null) {
+                StatusMainBox.Text = "Неверный логин или пароль";
+                return; }
 
-                        var tableWindow = new TableWindow();
-                        tableWindow.Show();
-                        this.Close();
-                    }
-                    else
-                    {
-                        StatusMainBox.Text = "Неверный логин или пароль";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                StatusMainBox.FontSize = 13;
-                StatusMainBox.Text = $"{ex.Message}";
-            }
+            CurrentAdminFullName = name.ToString();
+            new TableWindow().Show();
+            Close();
         }
-
     }
 }
-
