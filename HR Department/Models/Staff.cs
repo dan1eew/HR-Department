@@ -1,47 +1,61 @@
 ﻿using System;
 using System.Data;
+using System.Text.RegularExpressions;
 
-public class Staff
+namespace HR_Department
 {
-    public int staff_id { get; set; }
-    public string full_name { get; set; }
-    public string service { get; set; }
-    public string phone_number { get; set; }
-    public string email { get; set; }
-    public DateTime birth_date { get; set; }
-    public string city { get; set; }
-    public int post_number { get; set; }
-    public string birth_date_str => birth_date.ToString("dd.MM.yyyy");
+    public class Staff
+    {
+        public int staff_id { get; set; }
+        public string full_name { get; set; }
+        public string service { get; set; }
+        public string phone_number { get; set; }
+        public string email { get; set; }
+        public DateTime birth_date { get; set; }
+        public string city { get; set; }
+        public int post_number { get; set; }
 
-    public static Staff FromDataRow(DataRow row)
-    {
-        try
-        {
-            return new Staff
-            {
-                staff_id = GetValue<int>(row, "staff_id"),
-                full_name = GetValue<string>(row, "full_name"),
-                service = GetValue<string>(row, "service"),
-                phone_number = GetValue<string>(row, "phone_number"),
-                email = GetValue<string>(row, "email"),
-                birth_date = GetValue<DateTime>(row, "birth_date"),
-                city = GetValue<string>(row, "city"),
-                post_number = GetValue<int>(row, "post_number"),
-            };
-        }
-        catch (Exception ex)
-        {
-            System.Diagnostics.Debug.WriteLine($"Ошибка создания сотрудника: {ex.Message}");
-            return new Staff();
-        }
-    }
-    private static T GetValue<T>(DataRow row, string column)
-    {
-        return row[column] != DBNull.Value ? (T)Convert.ChangeType(row[column], typeof(T)) : default;
-    }
+        public string birth_date_str => birth_date.ToString("dd.MM.yyyy");
 
-    private static string GetValue(DataRow row, string column, string defaultValue)
-    {
-        return row[column] != DBNull.Value ? row[column].ToString() : defaultValue;
+        /// <summary>Валидация под БД</summary>
+        public static bool Validate(Staff s,out string error)
+        {
+            error = string.Empty;
+
+            if (string.IsNullOrWhiteSpace(s.full_name) || s.full_name.Length > 150)
+                error = "Некорректное ФИО";
+
+            else if (string.IsNullOrWhiteSpace(s.service) || s.service.Length > 100)
+                error = "Некорректный отдел";
+
+            else if (string.IsNullOrWhiteSpace(s.phone_number) || s.phone_number.Length > 20)
+                error = "Некорректный телефон";
+
+            else if (!Regex.IsMatch(s.email ?? "", @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                error = "Некорректный Email";
+
+            else if (s.birth_date > DateTime.Now)
+                error = "Дата рождения не может быть в будущем";
+
+            else if (string.IsNullOrWhiteSpace(s.city) || s.city.Length > 100)
+                error = "Некорректный город";
+
+            else if (s.post_number <= 0)
+                error = "Некорректный индекс";
+
+            return error == string.Empty;
+        }
+
+        public static Staff FromDataRow(DataRow row) => new()
+        {
+            staff_id = Convert.ToInt32(row["staff_id"]),
+            full_name = row["full_name"].ToString(),
+            service = row["service"].ToString(),
+            phone_number = row["phone_number"].ToString(),
+            email = row["email"].ToString(),
+            birth_date = Convert.ToDateTime(row["birth_date"]),
+            city = row["city"].ToString(),
+            post_number = Convert.ToInt32(row["post_number"])
+        };
     }
 }

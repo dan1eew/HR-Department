@@ -21,7 +21,11 @@
                         <ControlTemplate.Triggers>
                             <!-- Эффект при наведении -->
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FFFF7500"/>
+                                <Setter TargetName="border" Property="Background" Value="#FF0086EC"/>
+                            </Trigger>
+                            <!-- Эффект при нажатии -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FF004579"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -46,7 +50,11 @@
                         <ControlTemplate.Triggers>
                             <!-- Эффект при наведении -->
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FFFF1A1A"/>
+                                <Setter TargetName="border" Property="Background" Value="#FFD22A21"/>
+                            </Trigger>
+                            <!-- Эффект при нажатии -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="border" Property="Background" Value="#FF8A1A14"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

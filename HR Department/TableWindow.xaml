@@ -1,19 +1,20 @@
 ﻿<Window x:Class="HR_Department.TableWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Loaded="WindowLoaded"
         Title="HR Department"
+        Loaded="WindowLoaded"
         Height="600"
         Width="1200"
-        Background="#FF252525"
+        Background="White"
+        Foreground="Black"
         FontFamily="Sitka Display"
-        FontSize="18" 
+        FontSize="18"
         WindowStartupLocation="CenterScreen">
 
     <Grid Margin="10,10,10,5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
@@ -28,69 +29,132 @@
             <Label Content="HR Department"
                    FontSize="36"
                    FontWeight="Bold"
-                   VerticalAlignment="Center" Foreground="White" HorizontalAlignment="Left"/>
+                   VerticalAlignment="Center"
+                   ToolTip="Список сотрудников"/>
 
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,30">
-
-                <TextBlock x:Name="FullNameBox"
-                           Foreground="White"
-                           FontSize="18"
-                           Margin="0,0,10,0" FontFamily="Times New Roman" VerticalAlignment="Center"/>
-
-                <Button Content="X" Click="MainWindowClick" Background="#FFEC3F3F" Style="{StaticResource C5}"
-                        Margin="0,0,10,0" Width="30" BorderBrush="White" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
-            </StackPanel>
+            <!-- User / Exit -->
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal"
-                        VerticalAlignment="Bottom" Height="30" HorizontalAlignment="Left" Margin="0,30,0,0">
+                        HorizontalAlignment="Right"
+                        Margin="0,3,0,37">
+
+                <TextBlock x:Name="FullNameBox"
+                           FontSize="18"
+                           FontFamily="Times New Roman"
+                           VerticalAlignment="Center"
+                           ToolTip="Текущий пользователь"/>
+
+                <Button Content="X"
+                        Style="{StaticResource C5}"
+                        Width="30"
+                        Height="30"
+                        FontSize="22"
+                        FontWeight="Bold"
+                        Background="White"
+                        BorderBrush="#FFD22A21"
+                        Foreground="Black"
+                        Margin="10,0,0,0"
+                        Click="MainWindowClick"
+                        ToolTip="Выйти из системы"/>
+            </StackPanel>
+
+            <!-- Time / Refresh -->
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        Margin="0,37,0,3">
 
                 <TextBlock x:Name="DateTimeBox"
-                           Foreground="White"
                            FontSize="18"
-                           Margin="0,0,10,0" FontFamily="Times New Roman" VerticalAlignment="Center"/>
+                           FontFamily="Times New Roman"
+                           VerticalAlignment="Center"
+                           ToolTip="Текущая дата и время"/>
 
-                <Button Content="O" Background="#FFE89025" Style="{StaticResource C4}"
-                        Margin="0,0,10,0" Width="30" Click="RefheshClick" BorderBrush="White" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" FontWeight="Bold" />
-
+                <Button Content="O"
+                        Style="{StaticResource C4}"
+                        Width="30"
+                        Height="30"
+                        FontSize="22"
+                        FontWeight="Bold"
+                        Background="White"
+                        BorderBrush="#FF0086EC"
+                        Foreground="Black"
+                        Margin="10,0,0,0"
+                        Click="RefheshClick"
+                        ToolTip="Обновить данные"/>
             </StackPanel>
         </Grid>
 
         <!-- ===== TOOLBAR ===== -->
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"
-                    VerticalAlignment="Center">
-            <Button Content="+| добавить" Background="#FFE89025" Style="{StaticResource C4}"
-                    Margin="0,0,10,0" Width="100" BorderBrush="White" Foreground="White" FontWeight="Bold" />
-            <Button Content="~| редактировать" Background="#FFE89025" Style="{StaticResource C4}"
-                    Margin="0,0,10,0" Width="145" BorderBrush="White" Foreground="White" FontWeight="Bold" />
-            <Button Content="-| удалить" Background="#FFE89025" Style="{StaticResource C4}"
-                    Margin="0,0,10,0" Width="86" BorderBrush="White" Foreground="White" FontWeight="Bold" />
+                    Background="#FF252525"
+                    Height="50">
+
+            <Button Content="+"
+                    Style="{StaticResource C4}"
+                    Width="30"
+                    Height="30"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Margin="20,0,10,0"
+                    Background="White"
+                    BorderBrush="#FF0086EC"
+                    Click="AddClick"
+                    ToolTip="Добавить сотрудника"/>
+
+            <Button Content="~"
+                    Style="{StaticResource C4}"
+                    Width="30"
+                    Height="30"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Margin="0,0,10,0"
+                    Background="White"
+                    BorderBrush="#FF0086EC"
+                    Click="EditClick"
+                    ToolTip="Редактировать выбранного сотрудника"/>
+
+            <Button Content="-"
+                    Style="{StaticResource C5}"
+                    Width="30"
+                    Height="30"
+                    FontSize="22"
+                    FontWeight="Bold"
+                    Background="White"
+                    BorderBrush="#FFD22A21"
+                    Click="DeleteClick"
+                    ToolTip="Удалить выбранного сотрудника"/>
+
             <TextBox x:Name="SearchText"
                      Width="400"
                      Height="25"
-                     ToolTip="Поиск по сотрудникам" 
-                     VerticalAlignment="Center" VerticalContentAlignment="Center" BorderBrush="#FFAFAFAF" Background="#FFAFAFAF"/>
+                     Margin="20,0,0,0"
+                     VerticalContentAlignment="Center"
+                     Background="White"
+                     BorderBrush="#FF0086EC"
+                     KeyUp="SearchText_KeyDown"
+                     ToolTip="Поиск по ФИО, отделу, телефону, email"/>
         </StackPanel>
 
         <!-- ===== TABLE ===== -->
         <ListView x:Name="ListViewStaff"
                   Grid.Row="2"
-                  Background="White"
-                  Foreground="Black" 
                   FontFamily="Times New Roman"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  Margin="0,10,0,0"
+                  ToolTip="Список сотрудников">
 
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding staff_id}"/>
-                    <GridViewColumn Header="ФИО" Width="220" DisplayMemberBinding="{Binding full_name}"/>
-                    <GridViewColumn Header="Отдел" Width="150" DisplayMemberBinding="{Binding service}"/>
-                    <GridViewColumn Header="Телефон" Width="150" DisplayMemberBinding="{Binding phone_number}"/>
-                    <GridViewColumn Header="Email" Width="200" DisplayMemberBinding="{Binding email}"/>
-                    <GridViewColumn Header="Дата рождения" Width="120" DisplayMemberBinding="{Binding birth_date_str}"/>
-                    <GridViewColumn Header="Город" Width="120" DisplayMemberBinding="{Binding city}"/>
-                    <GridViewColumn Header="Индекс" Width="100" DisplayMemberBinding="{Binding post_number}"/>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding staff_id}"/>
+                    <GridViewColumn Header="ФИО" DisplayMemberBinding="{Binding full_name}"/>
+                    <GridViewColumn Header="Отдел" DisplayMemberBinding="{Binding service}"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding phone_number}"/>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding email}"/>
+                    <GridViewColumn Header="Дата рождения" DisplayMemberBinding="{Binding birth_date_str}"/>
+                    <GridViewColumn Header="Город" DisplayMemberBinding="{Binding city}"/>
+                    <GridViewColumn Header="Индекс" DisplayMemberBinding="{Binding post_number}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -98,9 +162,13 @@
         <!-- ===== STATUS ===== -->
         <Grid Grid.Row="3">
             <ScrollViewer>
-                <TextBlock x:Name="StatusTableBox"
-                           FontSize="13" TextWrapping="Wrap" FontFamily="Times New Roman"
-                           Foreground="White" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                <TextBox x:Name="StatusTableBox"
+                           FontSize="16"
+                           FontFamily="Times New Roman"
+                           Foreground="White"
+                           BorderBrush="White"
+                           TextWrapping="Wrap"
+                           ToolTip="Статус операций" Height="40" VerticalContentAlignment="Center"/>
             </ScrollViewer>
         </Grid>
     </Grid>

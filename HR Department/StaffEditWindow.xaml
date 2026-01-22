@@ -1,0 +1,219 @@
+﻿<Window x:Class="HR_Department.StaffEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="540"
+        Width="500"
+        Background="White"
+        Foreground="White"
+        FontFamily="Sitka Display"
+        FontSize="18"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!-- ===== HEADER ===== -->
+        <Label x:Name="TitleLabel"
+               Content="Добавление сотрудника"
+               FontSize="30"
+               FontWeight="Bold"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Height="48"/>
+
+        <!-- ===== BODY ===== -->
+        <Border Grid.Row="1"
+                Background="#FF252525"
+                CornerRadius="20"
+                Padding="20">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="160"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- ФИО -->
+                <Label Content="ФИО:"
+                       Foreground="White"
+                       ToolTip="Полное имя сотрудника"/>
+
+                <TextBox x:Name="FullNameBox"
+                         Grid.Column="1"
+                         Height="25"
+                         FontFamily="Times New Roman"
+                         Background="White"
+                         BorderBrush="White"
+                         VerticalContentAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,3,0,0"
+                         ToolTip="Например: Иванов Иван Иванович"/>
+
+                <!-- Отдел -->
+                <Label Grid.Row="1"
+                       Content="Отдел:"
+                       Foreground="White"
+                       ToolTip="Название отдела или подразделения"/>
+
+                <TextBox x:Name="ServiceBox"
+                         Grid.Row="1"
+                         Grid.Column="1"
+                         Height="25"
+                         FontFamily="Times New Roman"
+                         Background="White"
+                         BorderBrush="White"
+                         VerticalContentAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,3,0,0"
+                         ToolTip="Например: Отдел кадров"/>
+
+                <!-- Телефон -->
+                <Label Grid.Row="2"
+                       Content="Телефон:"
+                       Foreground="White"
+                       ToolTip="Контактный номер телефона"/>
+
+                <TextBox x:Name="PhoneBox"
+                         Grid.Row="2"
+                         Grid.Column="1"
+                         Height="25"
+                         FontFamily="Times New Roman"
+                         Background="White"
+                         BorderBrush="White"
+                         VerticalContentAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,3,0,0"
+                         ToolTip="+7XXXXXXXXXX"/>
+
+                <!-- Email -->
+                <Label Grid.Row="3"
+                       Content="Email:"
+                       Foreground="White"
+                       ToolTip="Электронная почта сотрудника"/>
+
+                <TextBox x:Name="EmailBox"
+                         Grid.Row="3"
+                         Grid.Column="1"
+                         Height="25"
+                         FontFamily="Times New Roman"
+                         Background="White"
+                         BorderBrush="White"
+                         VerticalContentAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,3,0,0"
+                         ToolTip="example@mail.com"/>
+
+                <!-- Дата рождения -->
+                <Label Grid.Row="4"
+                       Content="Дата рождения:"
+                       Foreground="White"
+                       ToolTip="Дата рождения сотрудника"/>
+
+                <TextBox x:Name="BirthDateBox"
+                         Grid.Row="4"
+                         Grid.Column="1"
+                         Height="25"
+                         FontFamily="Times New Roman"
+                         Background="White"
+                         BorderBrush="White"
+                         VerticalContentAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,3,0,0"
+                         ToolTip="Формат: dd.MM.yyyy"/>
+
+                <!-- Город -->
+                <Label Grid.Row="5"
+                       Content="Город:"
+                       Foreground="White"
+                       ToolTip="Город проживания"/>
+
+                <TextBox x:Name="CityBox"
+                         Grid.Row="5"
+                         Grid.Column="1"
+                         Height="25"
+                         FontFamily="Times New Roman"
+                         Background="White"
+                         BorderBrush="White"
+                         VerticalContentAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,3,0,0"
+                         ToolTip="Например: Москва"/>
+
+                <!-- Индекс -->
+                <Label Grid.Row="6"
+                       Content="Индекс:"
+                       Foreground="White"
+                       ToolTip="Почтовый индекс"/>
+
+                <TextBox x:Name="PostNumberBox"
+                         Grid.Row="6"
+                         Grid.Column="1"
+                         Height="25"
+                         FontFamily="Times New Roman"
+                         Background="White"
+                         BorderBrush="White"
+                         VerticalContentAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,3,0,0"
+                         ToolTip="Числовое значение"/>
+
+                <!-- Статус -->
+                <TextBlock x:Name="StatusBox"
+                           Grid.Row="7"
+                           Grid.ColumnSpan="2"
+                           Foreground="Red"
+                           TextWrapping="Wrap"
+                           FontFamily="Times New Roman"
+                           Margin="0,20,0,0"/>
+            </Grid>
+        </Border>
+
+        <!-- ===== BUTTONS ===== -->
+        <StackPanel Grid.Row="1"
+                    Orientation="Horizontal"
+                    Width="260"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,20,20">
+
+            <Button Content="Сохранить"
+                    Style="{StaticResource C4}"
+                    Width="140"
+                    Height="40"
+                    Margin="0,0,20,0"
+                    Background="White"
+                    Foreground="Black"
+                    BorderBrush="#FF0086EC"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Click="SaveClick"
+                    ToolTip="Сохранить изменения"/>
+
+            <Button Content="Отмена"
+                    Style="{StaticResource C5}"
+                    Width="100"
+                    Height="40"
+                    Background="White"
+                    Foreground="Black"
+                    BorderBrush="#FFD22A21"
+                    FontWeight="Bold"
+                    Click="CancelClick"
+                    ToolTip="Отменить и закрыть окно"/>
+        </StackPanel>
+    </Grid>
+</Window>
