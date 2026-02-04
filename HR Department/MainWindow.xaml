@@ -119,13 +119,21 @@
                         Style="{StaticResource C4}"
                         Background="White"
                         BorderBrush="#FF0086EC"
-                        Foreground="Black"
                         FontWeight="Bold"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Margin="0,0,20,20"
                         Click="LoginClick"
                         ToolTip="Войти в систему"/>
+
+                <Button Content="Выйти" Click="ExitClick"
+                        Width="150" Height="40" FontSize="22"
+                        Style="{StaticResource C5}"
+                        Background="White" BorderBrush="#FFD22A21" 
+                        FontWeight="Bold"
+                        HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                        Margin="20,0,0,20"
+                        ToolTip="Выйти из приложения"/>
             </Grid>
         </Border>
 

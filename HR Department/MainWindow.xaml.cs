@@ -53,5 +53,6 @@ namespace HR_Department
             new TableWindow().Show();
             Close();
         }
+        private void ExitClick(object sender, RoutedEventArgs e) => this.Close();
     }
 }
