@@ -58,9 +58,6 @@ namespace HR_Department
                     string columnName = GetColumnName(column);
                     if (columnName != null && _columnVisibility.ContainsKey(columnName))
                     {
-                        // ВАЖНО: Устанавливаем видимость, а не только ширину
-                        column.Visibility = _columnVisibility[columnName] ? Visibility.Visible : Visibility.Collapsed;
-
                         // Устанавливаем ширину только если колонка видима
                         if (_columnVisibility[columnName])
                         {

@@ -22,7 +22,8 @@ namespace HR_Department
             InitializeComponent();
 
             _columnManager = new ColumnVisibilityManager(ListViewStaff);
-            _printer = new StaffPrinter(ListViewStaff);
+            _printer = new StaffPrinter(ListViewStaff, _columnManager);
+            _printer = new StaffPrinter(ListViewStaff, _columnManager);
 
             // Отображаем имя пользователя
             FullNameBox.Text = MainWindow.CurrentAdminFullName;
