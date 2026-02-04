@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -13,10 +14,15 @@ namespace HR_Department
     {
         private readonly DispatcherTimer _timer;
         private readonly List<Staff> _staff = new();
+        private readonly ColumnVisibilityManager _columnManager;
+        private readonly StaffPrinter _printer;
 
         public TableWindow()
         {
             InitializeComponent();
+
+            _columnManager = new ColumnVisibilityManager(ListViewStaff);
+            _printer = new StaffPrinter(ListViewStaff);
 
             // Отображаем имя пользователя
             FullNameBox.Text = MainWindow.CurrentAdminFullName;
@@ -179,6 +185,54 @@ namespace HR_Department
         {
             new MainWindow().Show();
             Close();
+        }
+
+        // ========================= НАСТРОЙКИ СТОЛБЦОВ =========================
+        private void SettingsClick(object sender, RoutedEventArgs e)
+        {
+            _columnManager.ShowSettingsDialog();
+        }
+
+        // ========================= ПЕЧАТЬ =========================
+        private void PrintButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _printer.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при печати: {ex.Message}", "Ошибка",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // ========================= ПРЕДВАРИТЕЛЬНЫЙ ПРОСМОТР =========================
+        private void PrintPreviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _printer.ShowPreview();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при предварительном просмотре: {ex.Message}", "Ошибка",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        // ========================= БЫСТРЫЙ ПРЕДПРОСМОТР =========================
+        private void QuickPreviewButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _printer.ShowQuickPreview();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при быстром просмотре: {ex.Message}", "Ошибка",
+                               MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
