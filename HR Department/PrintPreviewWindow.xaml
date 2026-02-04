@@ -1,7 +1,7 @@
 ﻿<Window x:Class="HR_Department.PrintPreviewWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="900" Width="700"
+        Height="900" Width="700" Icon="/PNG file at 2556756480.png"
         FontFamily="Sitka Display"
         FontSize="15">
     

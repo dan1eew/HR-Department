@@ -1,7 +1,7 @@
 ﻿<Window x:Class="HR_Department.TableWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="HR Department" Loaded="WindowLoaded"
+        Title="HR Department" Loaded="WindowLoaded" Icon="/PNG file at 2556756480.png"
         Height="600" Width="1200" Background="White" Foreground="Black"
         FontFamily="Sitka Display" FontSize="18"
         WindowStartupLocation="CenterScreen">

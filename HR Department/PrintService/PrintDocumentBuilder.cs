@@ -30,7 +30,18 @@ namespace HR_Department
 
             AddHeader(document);
             AddDate(document);
-            AddTable(document, printableAreaWidth);
+
+            // ВАЖНО: Используем только видимые колонки
+            var visibleColumns = GetVisibleColumns().ToList();
+            if (visibleColumns.Any())
+            {
+                AddTable(document, printableAreaWidth, visibleColumns);
+            }
+            else
+            {
+                AddEmptyTableMessage(document);
+            }
+
             AddFooter(document);
 
             return document;
@@ -38,7 +49,7 @@ namespace HR_Department
 
         private void AddHeader(FlowDocument document)
         {
-            Paragraph header = new Paragraph(new Run("Список сотрудников"))
+            Paragraph header = new Paragraph(new Run("HR Department"))
             {
                 FontSize = 16,
                 FontWeight = FontWeights.Bold,
@@ -59,9 +70,8 @@ namespace HR_Department
             document.Blocks.Add(dateParagraph);
         }
 
-        private void AddTable(FlowDocument document, double printableAreaWidth)
+        private void AddTable(FlowDocument document, double printableAreaWidth, List<GridViewColumn> visibleColumns)
         {
-            var visibleColumns = _columnManager.GetVisibleColumns().ToList();
             var table = CreateTable(visibleColumns, printableAreaWidth);
 
             AddTableHeaders(table, visibleColumns);
@@ -165,13 +175,7 @@ namespace HR_Department
             for (int i = 0; i < columnCount; i++)
             {
                 // Настраиваем ширину в зависимости от типа колонки
-                columnWidths[i] = i switch
-                {
-                    0 => baseWidth * 0.5,  // ID
-                    3 => baseWidth * 0.8,  // Телефон
-                    _ => baseWidth
-                };
-
+                columnWidths[i] = baseWidth; // Все колонки равной ширины
                 totalWidth += columnWidths[i];
             }
 
@@ -208,6 +212,25 @@ namespace HR_Department
                 };
                 document.Blocks.Add(summary);
             }
+        }
+
+        private void AddEmptyTableMessage(FlowDocument document)
+        {
+            Paragraph message = new Paragraph(new Run("Нет видимых столбцов для печати. Пожалуйста, выберите хотя бы один столбец в настройках."))
+            {
+                FontSize = 12,
+                FontStyle = FontStyles.Italic,
+                Foreground = Brushes.Red,
+                TextAlignment = TextAlignment.Center,
+                Margin = new Thickness(0, 20, 0, 0)
+            };
+            document.Blocks.Add(message);
+        }
+
+        // ВАЖНО: Получаем видимые колонки из ColumnVisibilityManager
+        private IEnumerable<GridViewColumn> GetVisibleColumns()
+        {
+            return _columnManager.GetVisibleColumns();
         }
     }
 }

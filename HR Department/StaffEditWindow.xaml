@@ -1,7 +1,7 @@
 ﻿<Window x:Class="HR_Department.StaffEditWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Height="540"
+        Height="540" Icon="/PNG file at 2556756480.png"
         Width="500"
         Background="White"
         Foreground="White"

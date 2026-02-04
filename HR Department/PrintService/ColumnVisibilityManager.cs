@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace HR_Department
@@ -57,7 +58,18 @@ namespace HR_Department
                     string columnName = GetColumnName(column);
                     if (columnName != null && _columnVisibility.ContainsKey(columnName))
                     {
-                        column.Width = _columnVisibility[columnName] ? GetDefaultWidth(columnName) : 0;
+                        // ВАЖНО: Устанавливаем видимость, а не только ширину
+                        column.Visibility = _columnVisibility[columnName] ? Visibility.Visible : Visibility.Collapsed;
+
+                        // Устанавливаем ширину только если колонка видима
+                        if (_columnVisibility[columnName])
+                        {
+                            column.Width = GetDefaultWidth(columnName);
+                        }
+                        else
+                        {
+                            column.Width = 0;
+                        }
                     }
                 }
             }
@@ -65,7 +77,9 @@ namespace HR_Department
 
         private string GetColumnName(GridViewColumn column)
         {
-            return column.Header?.ToString() switch
+            if (column.Header == null) return null;
+
+            return column.Header.ToString() switch
             {
                 "ID" => "ID",
                 "ФИО" => "ФИО",
@@ -93,6 +107,12 @@ namespace HR_Department
                 "Индекс" => 70,
                 _ => 100
             };
+        }
+
+        // ВАЖНО: Добавьте этот метод для получения состояния видимости
+        public Dictionary<string, bool> GetColumnVisibility()
+        {
+            return new Dictionary<string, bool>(_columnVisibility);
         }
 
         public IEnumerable<GridViewColumn> GetVisibleColumns()

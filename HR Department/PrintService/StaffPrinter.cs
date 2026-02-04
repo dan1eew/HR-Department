@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Markup;
+using System.Windows.Media;
 
 namespace HR_Department
 {
@@ -12,10 +13,10 @@ namespace HR_Department
         private readonly ListView _listView;
         private readonly ColumnVisibilityManager _columnManager;
 
-        public StaffPrinter(ListView listView)
+        public StaffPrinter(ListView listView, ColumnVisibilityManager columnManager)
         {
             _listView = listView;
-            _columnManager = new ColumnVisibilityManager(listView);
+            _columnManager = columnManager;
         }
 
         public void Print()
@@ -50,7 +51,12 @@ namespace HR_Department
             try
             {
                 PrintDialog printDialog = new PrintDialog();
+                printDialog.PrintTicket.PageOrientation = PageOrientation.Landscape;
+
                 FlowDocument document = CreatePrintDocument(printDialog.PrintableAreaWidth);
+                document.PageHeight = printDialog.PrintableAreaHeight;
+                document.PageWidth = printDialog.PrintableAreaWidth;
+                document.PagePadding = new Thickness(25);
 
                 var previewWindow = new PrintPreviewWindow(document, this);
                 previewWindow.ShowDialog();
@@ -65,22 +71,58 @@ namespace HR_Department
         {
             try
             {
-                FlowDocument document = CreatePrintDocument(794); // A4 альбомная
+                // Используем стандартные размеры A4 в альбомной ориентации (ширина больше высоты)
+                double pageWidth = 29.7 * 96; // A4 ширина в пикселях (альбомная ориентация)
+                double pageHeight = 21 * 96;  // A4 высота в пикселях (альбомная ориентация)
+
+                FlowDocument document = CreatePrintDocument(pageWidth);
+                document.PageHeight = pageHeight;
+                document.PageWidth = pageWidth;
+                document.PagePadding = new Thickness(25);
 
                 Window previewWindow = new Window
                 {
                     Title = "Быстрый просмотр для печати",
-                    Width = 800,
-                    Height = 600,
-                    WindowStartupLocation = WindowStartupLocation.CenterScreen
+                    Width = 1000,
+                    Height = 700,
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    WindowState = WindowState.Maximized
                 };
 
-                FlowDocumentScrollViewer viewer = new FlowDocumentScrollViewer
+                DocumentViewer viewer = new DocumentViewer
                 {
-                    Document = document
+                    Document = document,
+                    Background = Brushes.White
                 };
 
-                previewWindow.Content = viewer;
+                // Добавляем панель инструментов
+                DockPanel dockPanel = new DockPanel();
+
+                StackPanel toolPanel = new StackPanel
+                {
+                    Orientation = Orientation.Horizontal,
+                    Height = 40,
+                    Background = Brushes.LightGray,
+                    Margin = new Thickness(0, 0, 0, 5)
+                };
+
+                Button closeButton = new Button
+                {
+                    Content = "Закрыть",
+                    Width = 80,
+                    Height = 30,
+                    Margin = new Thickness(5)
+                };
+
+                closeButton.Click += (s, e) => previewWindow.Close();
+
+                toolPanel.Children.Add(closeButton);
+
+                dockPanel.Children.Add(toolPanel);
+                DockPanel.SetDock(toolPanel, Dock.Top);
+                dockPanel.Children.Add(viewer);
+
+                previewWindow.Content = dockPanel;
                 previewWindow.ShowDialog();
             }
             catch (Exception ex)
