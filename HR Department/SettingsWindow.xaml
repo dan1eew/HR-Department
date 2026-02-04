@@ -1,0 +1,71 @@
+﻿<Window x:Class="HR_Department.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterScreen"
+         Width="300" Height="330" 
+        FontFamily="Times New Roman" FontSize="14">
+    
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Grid.Row="0" 
+               Text="Выберите, какие столбцы отображать в списке товаров" 
+               TextWrapping="Wrap" 
+               Margin="0,0,0,10"
+               TextAlignment="Center"/>
+
+        <!-- Список столбцов -->
+        <Border Grid.Row="1" 
+            BorderBrush="LightGray" 
+            BorderThickness="1" 
+            Margin="0,0,0,10">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel x:Name="ColumnsPanel" Margin="5">
+                    <!-- CheckBox будут добавлены в коде -->
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+
+        <!-- Кнопки -->
+        <StackPanel Grid.Row="2" 
+                Orientation="Horizontal" 
+                HorizontalAlignment="Right">
+            <Button Content="-"
+                Style="{StaticResource C5}"
+                Width="30"
+                Height="30"
+                FontSize="22"
+                FontWeight="Bold"
+                Background="White"
+                BorderBrush="#FFD22A21"
+                Click="Cancel_Click"
+                ToolTip="Выйти"/>
+            <Button Content="+"
+                Style="{StaticResource C4}"
+                Width="30"
+                Height="30"
+                FontSize="22"
+                FontWeight="Bold"
+                Margin="10,0,0,0"
+                Background="White"
+                BorderBrush="#FF0086EC"
+                Click="OK_Click"
+                ToolTip="Сохранить"/>
+            <Button Content="+" x:Name="BtnSelectAll" Click="SelectAll_Click"
+                Style="{StaticResource C4}"
+                Width="30"
+                Height="30"
+                FontSize="22"
+                FontWeight="Bold"
+                Margin="10,0,0,0"
+                Background="White"
+                BorderBrush="#FF0086EC"
+                ToolTip="Выбрать всё"/>
+        </StackPanel>
+        </Grid>
+</Window>
