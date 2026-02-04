@@ -1,93 +1,46 @@
 ﻿<Application x:Class="HR_Department.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:HR_Department"
              StartupUri="MainWindow.xaml">
+
     <Application.Resources>
-        <Style x:Key="C4" TargetType="{x:Type Button}">
+
+        <!-- ===== BASE COLORS ===== -->
+        <Color x:Key="BlueAccent">#FF0086EC</Color>
+        <Color x:Key="RedAccent">#FFD22A21</Color>
+        <Color x:Key="OrangeAccent">#FFF1610D</Color>
+
+        <!-- ===== BUTTON STYLES ===== -->
+
+        <!-- C4 – Primary (Blue) -->
+        <Style x:Key="C4" TargetType="Button">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border 
-                        x:Name="border"
-                        CornerRadius="4"
-                        Background="{TemplateBinding Background}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter 
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"/>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
                         </Border>
-                        <ControlTemplate.Triggers>
-                            <!-- Эффект при наведении -->
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FF0086EC"/>
-                            </Trigger>
-                            <!-- Эффект при нажатии -->
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FF004579"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        <Style x:Key="C5" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border 
-                x:Name="border"
-                CornerRadius="4"
-                Background="{TemplateBinding Background}"
-                BorderThickness="{TemplateBinding BorderThickness}"
-                BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter 
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <!-- Эффект при наведении -->
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FFD22A21"/>
-                            </Trigger>
-                            <!-- Эффект при нажатии -->
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FF8A1A14"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+
+        <!-- C5 – Danger (Red) -->
+        <Style x:Key="C5" TargetType="Button" BasedOn="{StaticResource C4}">
+            <Setter Property="BorderBrush" Value="{StaticResource RedAccent}"/>
         </Style>
-        <Style x:Key="C6" TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border 
- x:Name="border"
- CornerRadius="4"
- Background="{TemplateBinding Background}"
- BorderThickness="{TemplateBinding BorderThickness}"
- BorderBrush="{TemplateBinding BorderBrush}">
-                            <ContentPresenter 
-     HorizontalAlignment="Center"
-     VerticalAlignment="Center"/>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <!-- Эффект при наведении -->
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FFF1610D"/>
-                            </Trigger>
-                            <!-- Эффект при нажатии -->
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="border" Property="Background" Value="#FFAF4F0B"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
+
+        <!-- C6 – Warning (Orange) -->
+        <Style x:Key="C6" TargetType="Button" BasedOn="{StaticResource C4}">
+            <Setter Property="BorderBrush" Value="{StaticResource OrangeAccent}"/>
         </Style>
+
     </Application.Resources>
 </Application>
