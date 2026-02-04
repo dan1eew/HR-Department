@@ -61,7 +61,9 @@
     <Compile Include="PrintPreviewWindow.xaml.cs">
       <DependentUpon>PrintPreviewWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PrintService\PrintDocumentBuilder.cs" />
     <Compile Include="PrintService\StaffPrinter.cs" />
+    <Compile Include="PrintService\TableDataExtractor.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
